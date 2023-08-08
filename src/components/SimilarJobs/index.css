@@ -1,0 +1,13 @@
+.similar-list {
+  list-style-type: none;
+  background-color: #475569;
+  width: 30%;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 20px;
+  height: 70vh;
+}

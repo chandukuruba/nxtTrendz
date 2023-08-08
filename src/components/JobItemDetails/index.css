@@ -1,0 +1,10 @@
+.similar-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.job-item-details-container {
+  background-color: #000000;
+  color: white;
+  padding: 20px;
+}

@@ -1,0 +1,56 @@
+.jobcard-container {
+  background-color: #475569;
+  padding: 30px;
+  display: flex;
+  margin: 20px;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 30px;
+  color: #ffffff;
+}
+.jobcard-name-container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: flex-start;
+}
+.jobcard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+.jobcard-image {
+  width: 100px;
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.jobcard-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: flex-start;
+}
+.jobcard-icon {
+  width: 40px;
+  margin-right: 10px;
+  height: 40px;
+}
+.jobcard-item {
+  display: flex;
+  align-items: center;
+}
+.jobcard-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
+}
+.jobcard-head {
+  align-self: flex-end;
+}
+.line {
+  width: 100%;
+  border: solid, 2px, #475569;
+}

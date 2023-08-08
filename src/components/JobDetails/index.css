@@ -1,0 +1,38 @@
+.skills-container {
+  display: flex;
+  align-items: center;
+  list-style-type: none;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+.skills {
+  display: flex;
+  width: 30%;
+  margin-right: 10px;
+  margin-top: 40px;
+}
+.skills-image {
+  width: 50px;
+  height: 50px;
+  margin-right: 20px;
+}
+.life {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.life-image {
+  width: 30%;
+  margin-left: 30px;
+}
+.life-para {
+  font-size: 20px;
+}
+.description {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+a {
+  font-size: 20px;
+}
