@@ -60,7 +60,7 @@ class Jobs extends Component {
     employmentType: [],
     salary: '',
     userProfile: {},
-    profileApiStatus: false,
+    profileApiStatus: apiStatusConstants.initial,
   }
 
   componentDidMount() {
@@ -107,6 +107,7 @@ class Jobs extends Component {
   }
 
   getProfile = async () => {
+    this.setState({profileApiStatus: apiStatusConstants.inProgress})
     const jwtToken = Cookies.get('jwt_token')
     const url = 'https://apis.ccbp.in/profile'
     const options = {
@@ -123,9 +124,12 @@ class Jobs extends Component {
         profileImage: data.profile_details.profile_image_url,
         shortBio: data.profile_details.short_bio,
       }
-      this.setState({userProfile: profile, profileApiStatus: true})
+      this.setState({
+        userProfile: profile,
+        profileApiStatus: apiStatusConstants.success,
+      })
     } else {
-      this.setState({profileApiStatus: false})
+      this.setState({profileApiStatus: apiStatusConstants.failure})
     }
   }
 
@@ -195,23 +199,32 @@ class Jobs extends Component {
   renderProfile = () => {
     const {userProfile, profileApiStatus} = this.state
     const {name, shortBio, profileImage} = userProfile
-    return profileApiStatus ? (
-      <div className="profile-container">
-        <img className="profile-image" src={profileImage} alt="profile" />
-        <h1 className="profile-head">{name}</h1>
-        <p>{shortBio}</p>
-      </div>
-    ) : (
-      <div className="profile-container">
-        <button
-          className="logout-desktop-btn"
-          type="button"
-          onClick={this.getProfile}
-        >
-          Retry
-        </button>
-      </div>
-    )
+    switch (profileApiStatus) {
+      case apiStatusConstants.inProgress:
+        return this.renderLoadingView()
+      case apiStatusConstants.success:
+        return (
+          <div className="profile-container">
+            <img className="profile-image" src={profileImage} alt="profile" />
+            <h1 className="profile-head">{name}</h1>
+            <p>{shortBio}</p>
+          </div>
+        )
+      case apiStatusConstants.failure:
+        return (
+          <div className="profile-container">
+            <button
+              className="logout-desktop-btn"
+              type="button"
+              onClick={this.getProfile}
+            >
+              Retry
+            </button>
+          </div>
+        )
+      default:
+        return null
+    }
   }
 
   renderJobsList = () => (
@@ -222,8 +235,7 @@ class Jobs extends Component {
   )
 
   onClickSearch = () => {
-    this.setState({searchInput: ''})
-    this.getProducts()
+    this.setState({searchInput: ''}, this.getProducts)
   }
 
   onChangeSearchInput = event => {
